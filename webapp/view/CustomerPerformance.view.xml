@@ -1,0 +1,42 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="stk.starterkit.controller.CustomerPerformance" >
+    <Page
+        showNavButton="true"
+        navButtonPress="handleNavButtonPress"
+        title="{i18n>performance}" >
+        <Table
+            items="{path: '/Employees', parameters: {expand: 'Orders'}}" 
+        >
+            <columns>
+                <Column>
+                    <Label text="{i18n>name}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>position}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>orders}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>actions}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Text
+                        text="{parts: [{path: 'FirstName'},  {path: 'LastName'}], formatter: '.formatter.formatName'}"
+                    />
+                    <Text text="{Title}" />
+                    <Text text="{path: 'Orders', formatter: '.formatter.countOrders'}" />
+                    <FlexBox justifyContent="End">
+                        <Button type="Ghost" text="{i18n>motivate}" press="onPressMotivate"/>
+                        <Button type="Ghost" text="{i18n>fire}" press="onPressFire"/>
+                    </FlexBox>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>    
+ 
+</mvc:View>

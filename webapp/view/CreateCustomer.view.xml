@@ -1,0 +1,56 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    controllerName="stk.starterkit.controller.CreateCustomer"
+>
+	<!-- <l:VerticalLayout class="sapUiContentPadding" width="100%">
+
+    <l:content>
+			<Label id="suggestionsInputLabel" text="Suggestions" labelFor="suggestionsInput" />
+			<Input
+				id="suggestionsInput"
+				placeholder="Enter product"
+				showSuggestions="true"
+				suggestionItems="{/ProductCollection}"
+				suggestionItemPreview="handleSuggestionItemPreview"
+				suggestionItemSelect="handleSuggestionItemSelect"
+				ariaLabelledBy="suggestionsInputLabel">
+				<suggestionItems>
+					<SuggestionItem text="{Name}"></SuggestionItem>
+				</suggestionItems>
+			</Input>
+    		</l:content>
+	</l:VerticalLayou> -->
+
+    <Page title="Add new customer"
+        showNavButton="true"
+        navButtonPress="handleNavButtonPress" >
+        <content>
+            <Label
+                text="Customer ID"
+                labelFor="CustomerID"
+            />
+            <Input
+                id="CustomerID"
+                placeholder="Enter Customer ID"
+                value="{/sId}"
+            />
+            <Label
+                text="Customer Name"
+                labelFor="CustomerName"
+            />
+
+            <Input
+                id="CustomerName"
+                placeholder="Enter Customer Name"
+                value="{/sName}"
+            />
+            <Button
+                type="Accept"
+                text="Save"
+                press="onSaveNewCustomer"
+            />
+        </content>
+    </Page>
+</mvc:View>

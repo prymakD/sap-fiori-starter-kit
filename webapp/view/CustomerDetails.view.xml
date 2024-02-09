@@ -1,0 +1,46 @@
+<mvc:XMLView
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="stk.starterkit.controller.CustomerDetails"
+    displayBlock="true"
+>
+    <Page
+        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+        id="CustomerDetails"
+        showNavButton="true"
+        navButtonPress="handleNavButtonPress"
+        title="{CompanyName}"
+    >
+        <Bar>
+            <contentRight>
+                <Button text="{i18n>contactDetailsButton}" press="onOpenCustomerDetails" />
+            </contentRight>
+        </Bar>
+        <Table
+            items="{path: 'Orders', parameters: {expand: 'Employee'}, sorter: { path: 'OrderDate', descending: true }}"
+        >
+            <columns>
+                <Column>
+                    <Label text="{i18n>orderID}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>employee}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>orderDate}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Text text="{OrderID}" />
+                    <Text
+                        text="{parts: [{path: 'Employee/FirstName'},  {path: 'Employee/LastName'}], formatter: '.formatter.formatName'}"
+                    />
+                    <Text
+                        text="{path: 'OrderDate', type: 'sap.ui.model.type.DateTime', formatOptions:{style: 'medium'}}"
+                    />
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:XMLView>

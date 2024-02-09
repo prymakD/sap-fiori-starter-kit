@@ -1,0 +1,77 @@
+<mvc:View
+    controllerName="stk.starterkit.controller.CustomerList"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page
+                    id="page"
+                    title="{i18n>title}"
+                >
+                    <content>
+                        <Carousel
+                            id="customerCarousel"
+                            height="25%"
+                            loop="true"
+                            class="blueBackground"
+                        >
+                            <pages>
+                                <Image
+                                    src="https://www.drupal.org/files/Capgemini_Logo_2COL_RGB.png"
+                                />
+                                <Image
+                                    src="https://www.capgemini.com/pl-pl/wp-content/uploads/sites/27/2023/02/36.png"
+                                />
+                                <Image
+                                    src="https://miro.medium.com/v2/resize:fit:881/1*rBIRnu_uUehau9hFxyN-pQ.jpeg"
+                                />
+                            </pages>
+                            <customLayout>
+                                <CarouselLayout visiblePagesCount="2" />
+                            </customLayout>
+                        </Carousel>
+                        <Bar>
+                            <contentRight>
+                                <Button
+                                    type="Accept"
+                                    text="Create New Customer"
+                                    press="onOpenCreateCustomer"
+                                />
+                            </contentRight>
+                            <contentMiddle>
+                                <Button
+                                type="Ghost"
+                                text="{i18n>performance}"
+                                press="onPressPerformance"/>
+                            </contentMiddle>
+                        </Bar>
+                        
+                        <Table items="{path: '/Customers'}"
+                                >
+                            <columns>
+                                <Column>
+                                    <Label text="{i18n>companyName}" />
+                                </Column>
+                                <Column>
+                                    <Label text="{i18n>country}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem
+                                    type="Navigation"
+                                    press="onCustomerPress"
+                                >
+                                    <Text text="{CompanyName}" />
+                                    <Text text="{Country}" />
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
