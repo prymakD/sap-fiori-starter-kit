@@ -12,7 +12,7 @@ sap.ui.define([
             formatter: Formatter,
             onInit: function () {
             },
-            handleNavButtonPress: function (){
+            handleNavButtonPress: function () {
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("CustomerList");
             },
@@ -23,36 +23,22 @@ sap.ui.define([
                 var sBody = "You are doing well, thank you!";
                 sap.m.URLHelper.triggerEmail(sEmail, sSubject, sBody);
             },
-            onPressMotivate: function (oEvent){
-                console.log("sBody");
+            onPressMotivate: function (oEvent) {
 
-                // $.ajax({
-                //     url: "/evilinsult/generate_insult.php",
-                //     data: {
-                //         lang: "en",
-                //         type: "json"
-                //     },
-                //     success: function (oResponse) {
-                //         var oEmployee = oEvent.getSource().getBindingContext().getObject();
-                //         var sEmail = "prymakdn@gmail.com";
-                //         var sSubject = "Good Job!";
-                //         var sBody = JSON.parse(oResponse).insult;
-                //         sap.m.URLHelper.triggerEmail(sEmail, sSubject, sBody);
-                //     }
-                // })
-
+                //ajax option
                 var oModel = new sap.ui.model.json.JSONModel();
-                oModel.loadData("/evilinsult/generate_insult.php", {
+                oModel.loadData("https://evilinsult.com/generate_insult.php", {
                     lang: "en",
                     type: "json"
                 }).then(function () {
+                    var oEmployee = oEvent.getSource().getBindingContext().getObject();
                     var sBody = oModel.getData().insult;
-                    var sEmail = "prymakdn@gmail.com";
+                    var sEmail = oEmployee.FirstName + "." + oEmployee.LastName + "@<yourOrganisation>.com";
                     var sSubject = "Good Job!";
                     sap.m.URLHelper.triggerEmail(sEmail, sSubject, sBody);
                 })
             },
-            onPressFire: function (oEvent){
+            onPressFire: function (oEvent) {
                 $.ajax({
                     url: "https://evilinsult.com/generate_insult.php",
                     data: {
@@ -60,11 +46,14 @@ sap.ui.define([
                         type: "json"
                     },
                     success: function (oResponse) {
+                        //sapui5 JSON model option
                         var oEmployee = oEvent.getSource().getBindingContext().getObject();
                         var sEmail = oEmployee.FirstName + "." + oEmployee.LastName + "@<>.com";
                         var sSubject = "We are dissapointed!";
-                        var sBody = JSON.parse(oResponse).insult;
-                        console.log("sBody");
+
+                        //response from evilinslut somehow is not json so it should be stringified before parsing
+                        var sBody = JSON.parse(JSON.stringify(oResponse)).insult;
+
                         sap.m.URLHelper.triggerEmail(sEmail, sSubject, sBody);
                     }
                 })
