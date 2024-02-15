@@ -30,19 +30,31 @@ sap.ui.define([
                 oRouter.navTo("CustomerList");
             },
 
-            onOpenCustomerDetails: function (oEvent) {
+            onShowContactInfoButtonPress: function (oEvent) {
                 var oView = this.getView();
 
-                if (!this._oDialog) {
-                    this._oDialog = sap.ui.xmlfragment(oView.getId(), "stk.starterkit.view.ContactInfoDialog");
-                    oView.addDependent(this._oDialog);
+                if (!this.byId("contactDialog")) {
+                    var that = this
+                    Fragment.load({
+                        id: oView.getId(),
+                        name: "stk.starterkit.view.ContactInfoDialog",
+                        controller: that
+                    }).then(function (oDialog) {
+                        console.log(that)
+                        oView.addDependent(oDialog);
+                        oDialog.open();
+                    });
+                } else {
+                    this.byId("contactDialog").open();
                 }
-                this._oDialog.open();
             },
 
-            onCloseCustomerDetails: function () {
-                console.log("Closed");
-                this._oDialog.close();
+            onCloseButtonPress: function () {
+                var oDialog = this.byId("contactDialog");
+                if (oDialog) {
+                    oDialog.close();
+                }
             }
+
         });
     });
