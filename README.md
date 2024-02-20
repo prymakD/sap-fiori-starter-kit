@@ -39,4 +39,6 @@ An SAP Fiori application.
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
 
+#### Selenium tests: unit and integrational
 
+![Tests](https://github.com/prymakD/sap-fiori-starter-kit/blob/main/Selenium-based%20tests%20UI5.png)
