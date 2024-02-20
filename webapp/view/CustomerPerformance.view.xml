@@ -30,7 +30,7 @@
                     />
                     <Text text="{Title}" />
                     <Text text="{path: 'Orders', formatter: '.formatter.countOrders'}" />
-                    <FlexBox justifyContent="End">
+                    <FlexBox justifyContent="Start" alignItems="Baseline">
                         <Button type="Ghost" text="{i18n>motivate}" press="onPressMotivate"/>
                         <Button type="Ghost" text="{i18n>fire}" press="onPressFire"/>
                     </FlexBox>
