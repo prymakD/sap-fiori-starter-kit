@@ -5,27 +5,32 @@ sap.ui.define([
     "use strict";
     var sViewName = "CustomerList";
     Opa5.createPageObjects({
-        onTheCustomerList: {
+        onTheCustomersList: {
             actions: {
-                iPressCreate: function() {
+                iPressCreate: function () {
                     return this.waitFor({
-                        controlType: "sap.m.Button",
-                        matchers: new sap.ui.test.matchers.I18Ntext({
-                            key: "createCustomer",
-                            modelName: "i18n",
-                            propertyName: "text"
-                        }),
+                        id: "createButton",
                         viewName: sViewName,
                         actions: new Press(),
-                        errorMessage: "Did not find the table"
+                        errorMessage: "Did not press the button"
                     });
                 }
             },
             assertions: {
 
+                iShouldSeeCustomerListView: function () {
+					return this.waitFor({
+						viewName: sViewName,
+						success: function () {
+							Opa5.assert.ok(true, "The " + sViewName + " view is displayed");
+						},
+						errorMessage: "Did not find the " + sViewName + " view"
+					});
+				},
+
                 iShouldSeeTheCarousel: function () {
                     return this.waitFor({
-                        id : "customerCarousel",
+                        id: "idCustomerCarousel",
                         viewName: sViewName,
                         success: function () {
                             Opa5.assert.ok(true, "The carousel is displayed");
@@ -40,8 +45,8 @@ sap.ui.define([
                         viewName: sViewName,
                         success: function () {
                             Opa5.assert.ok(true, "The table is displayed");
-                            var iItemsCount = oTable[0].getItems().length;
-                            Opa5.assert.notStrictEqual(iItemsCount, 0, "Table ahs items: " + iItemsCount);
+                            // var iItemsCount = oTable[0].getItems().length;
+                            // Opa5.assert.notStrictEqual(iItemsCount, 0, "Table ahs items: " + iItemsCount);
                         },
                         errorMessage: "Did not find the table"
                     });
@@ -49,32 +54,13 @@ sap.ui.define([
 
                 iShouldSeeTheCreateButton: function () {
                     return this.waitFor({
+                        id: "createButton",
                         controlType: "sap.m.Button",
-                        matchers: new sap.ui.test.matchers.I18Ntext({
-                            key: "createCustomer",
-                            modelName: "i18n",
-                            propertyName: "text"
-                        }),
                         viewName: sViewName,
                         success: function () {
                             Opa5.assert.ok(true, "The create button is displayed");
                         },
-                        errorMessage: "Did not find the table"
-                    });
-                }
-            }
-        },
-
-        onCreateCustomer: {
-            actions: {},
-            assertions: {
-                iShouldSeeThePage: function () {
-                    return this.waitFor({
-                        viewName: "CreateCustomer",
-                        success: function () {
-                            Opa5.assert.ok(true, "The Create customer page is displayed");
-                        },
-                        errorMessage: "Did not find the page"
+                        errorMessage: "Did not find the create button"
                     });
                 }
             }

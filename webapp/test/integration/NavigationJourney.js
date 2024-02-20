@@ -2,22 +2,28 @@
 
 sap.ui.define([
 	"sap/ui/test/opaQunit",
-	"./pages/App",
-	"./pages/Master"
+	"./pages/CreateCustomer",
+	"./pages/CustomerList"
 ], function (opaTest) {
 	"use strict";
 
 	QUnit.module("Navigation Journey");
 
 	opaTest("Should see the initial page of the app", function (Given, When, Then) {
-		// Arrangements
 		Given.iStartMyApp();
 
-		// Assertions
-		Then.onTheAppPage.iShouldSeeTheApp();
-      	Then.onTheViewPage.iShouldSeeThePageView();
+		Then.onTheCustomersList.iShouldSeeCustomerListView();
 
-		//Cleanup
 		Then.iTeardownMyApp();
 	});
+
+	opaTest("Should navigate to create new customer", function (Given, When, Then) {
+        Given.iStartMyApp();
+
+        When.onTheCustomersList.iPressCreate();
+
+        Then.onCreateCustomer.iShouldSeeCreateCustomerView();
+
+        Then.iTeardownMyApp();
+    });
 });
