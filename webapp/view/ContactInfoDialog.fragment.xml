@@ -5,9 +5,10 @@
 >
     <Dialog
         id="contactDialog"
+        title="{i18n>contactDetails}"
     >
         <VBox>
-            <f:SimpleForm title="{i18n>contactDetails}">
+            <f:SimpleForm>
                 <f:content>
                     <Label text="{i18n>name}" />
                     <Text text="{ContactName}" />
@@ -24,7 +25,7 @@
             </f:SimpleForm>
         </VBox>
         <beginButton>
-            <Button type="Reject" text="{i18n>close}" press="onCloseCustomerDetails" />
+            <Button type="Reject" text="{i18n>close}" press=".onCloseButtonPress"/>
         </beginButton>
     </Dialog>
 </core:FragmentDefinition>

@@ -14,10 +14,8 @@ sap.ui.define(
         var sId = this.getView().byId("CustomerID").getValue();
         var sName = this.getView().byId("CustomerName").getValue();
 
-        // Assuming you have a JSON model for simplicity
         var oModel = this.getView().getModel();
 
-        // Assuming your OData service supports creating a new customer entity
         oModel.create(
           "/Customers",
           {
@@ -26,16 +24,13 @@ sap.ui.define(
           },
           {
             success: function () {
-              // Handle success
               console.log("Customer created successfully!");
               MessageToast.show("Customer created successfully!");
 
-              // Navigate to the "CustomerList" view after successful creation
               var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-              oRouter.navTo("CustomerList");
+              // oRouter.navTo("CustomerList");
             }.bind(this),
             error: function (oError) {
-              // Handle error
               console.error("Error creating customer:", oError);
               MessageToast.show("Error creating customer:", oError);
             },

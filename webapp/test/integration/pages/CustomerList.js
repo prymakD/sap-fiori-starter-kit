@@ -45,6 +45,7 @@ sap.ui.define([
                         viewName: sViewName,
                         success: function () {
                             Opa5.assert.ok(true, "The table is displayed");
+                            // Fix needed
                             // var iItemsCount = oTable[0].getItems().length;
                             // Opa5.assert.notStrictEqual(iItemsCount, 0, "Table ahs items: " + iItemsCount);
                         },

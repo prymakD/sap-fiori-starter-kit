@@ -13,7 +13,7 @@
                 >
                     <content>
                         <Carousel
-                            id="customerCarousel"
+                            id="idCustomerCarousel"
                             height="25%"
                             loop="true"
                             class="blueBackground"
@@ -36,8 +36,9 @@
                         <Bar>
                             <contentRight>
                                 <Button
+                                    id="createButton"
                                     type="Accept"
-                                    text="Create New Customer"
+                                    text="{i18n>createCustomer}"
                                     press="onOpenCreateCustomer"
                                 />
                             </contentRight>

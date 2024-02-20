@@ -24,6 +24,7 @@
 	</l:VerticalLayou> -->
 
     <Page title="Add new customer"
+        id="createCustomer"
         showNavButton="true"
         navButtonPress="handleNavButtonPress" >
         <content>
