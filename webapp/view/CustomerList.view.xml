@@ -51,7 +51,29 @@
                         </Bar>
                         
                         <Table items="{path: '/Customers'}"
+                               id="customersTable"
                                 >
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <Title text="{i18>customersListTitle}"/>
+                                        <ToolbarSpacer/>
+                                        <SearchField 
+                                                     id="searchField"
+                                                     placeholder="Search for country name..."
+                                                     width="auto" 
+                                                     showRefreshButton="true" 
+                                                     search=".onSearch"
+                                                     suggest=".onSuggest"
+                                                     enableSuggestions="true"
+                                                     suggestionItems=
+                                                     "{
+                                                     path: '/Customers',
+                                                     sorter: { path: 'Country' }
+                                                      }">
+                                            <SuggestionItem description="Name: {path:'companyName'} Country: {path:'country'}" key="{CustomerID}" />
+                                        </SearchField>
+                                    </Toolbar>
+                                </headerToolbar>
                             <columns>
                                 <Column>
                                     <Label text="{i18n>companyName}" />
